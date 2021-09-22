@@ -1,7 +1,7 @@
-package com.springboot.demo;
+package com.springboot.controller;
 
-import com.springboot.demo.config.BlogProperties;
-import com.springboot.demo.config.ConfigBean;
+import com.springboot.config.BlogProperties;
+import com.springboot.config.ConfigBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

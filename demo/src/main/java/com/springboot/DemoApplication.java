@@ -1,12 +1,9 @@
-package com.springboot.demo;
+package com.springboot;
 
-import com.springboot.demo.config.ConfigBean;
-import org.springframework.boot.Banner;
+import com.springboot.config.ConfigBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @EnableConfigurationProperties({ConfigBean.class})
