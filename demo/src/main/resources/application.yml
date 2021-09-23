@@ -4,15 +4,35 @@ server:
     context-path: /web
 
 spring:
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+      settings:
+        web-allow-others: true
   datasource:
-    # 驱动配置信息
-    db-type: com.alibaba.druid.pool.DruidDataSource
-    #mysql 配置
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/shop?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
-    username: test
-    password: 12345678
+    initialization-mode: always     # springboot 2.0 需要添加
     druid:
+      # 数据库访问配置, 使用druid数据源
+      # 数据源1 mysql
+      mysql:
+        # 驱动配置信息
+        db-type: com.alibaba.druid.pool.DruidDataSource
+        #mysql 配置
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/shop?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+        username: test
+        password: 12345678
+      # 数据源2 H2
+      h2:
+        platform: h2
+        db-type: com.alibaba.druid.pool.DruidDataSource    #使用阿里druid连接池
+        url: jdbc:h2:~/test    #test是我创建的数据库名
+        username: sa
+        password:
+        schema: classpath:schema-h2.sql #程序运行时，使用schema.sql来创建数据库中的表
+        data: classpath:data-h2.sql  #程序运行时，使用data.sql来创建初始数据
+        driver-class-name: org.h2.Driver
       # 连接池配置
       initial-size: 5
       min-idle: 5
@@ -57,7 +77,7 @@ spring:
         login-username: druid
         login-password: druid123
         # IP白名单
-        allow: localhost
+        allow:
         #　IP黑名单（共同存在时，deny优先于allow）
         # deny: 192.168.1.218
 
@@ -65,3 +85,4 @@ spring:
       filter:
         stat:
           log-slow-sql: true
+
