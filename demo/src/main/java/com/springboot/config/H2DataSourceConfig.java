@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import javax.sql.DataSource;
 
 @Configuration
-public class DataSourceConfig {
+public class H2DataSourceConfig {
 
     @Bean(name = "h2datasource")
     @ConfigurationProperties("spring.datasource.druid.h2")

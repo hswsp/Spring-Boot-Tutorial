@@ -10,8 +10,8 @@ spring:
       enabled: true
       settings:
         web-allow-others: true
+
   datasource:
-    initialization-mode: always     # springboot 2.0 需要添加
     druid:
       # 数据库访问配置, 使用druid数据源
       # 数据源1 mysql
@@ -25,14 +25,13 @@ spring:
         password: 12345678
       # 数据源2 H2
       h2:
-        platform: h2
         db-type: com.alibaba.druid.pool.DruidDataSource    #使用阿里druid连接池
         url: jdbc:h2:~/test    #test是我创建的数据库名
         username: sa
         password:
-        schema: classpath:schema-h2.sql #程序运行时，使用schema.sql来创建数据库中的表
-        data: classpath:data-h2.sql  #程序运行时，使用data.sql来创建初始数据
         driver-class-name: org.h2.Driver
+#        schema: classpath:schema-h2.sql #程序运行时，使用schema.sql来创建数据库中的表
+#        data: classpath:data-h2.sql  #程序运行时，使用data.sql来创建初始数据
       # 连接池配置
       initial-size: 5
       min-idle: 5
@@ -43,10 +42,12 @@ spring:
       time-between-eviction-runs-millis: 60000
       # 配置连接在池中的最小生存时间
       min-evictable-idle-time-millis: 300000
-      validation-query: select '1' from dual
       test-while-idle: true
       test-on-borrow: false
       test-on-return: false
+      # 用来检测连接是否有效的sql，要求是一个查询语句，常用select 'x'。如果validationQuery为null，
+      # testOnBorrow、testOnReturn、testWhileIdle都不会起作用。
+      validation-query: select 1 from dual
       # 是否缓存preparedStatement，也就是PSCache  官方建议MySQL下建议关闭   个人建议如果想用SQL防火墙 建议打开
       # 打开PSCache，并且指定每个连接上PSCache的大小
       pool-prepared-statements: true
@@ -85,4 +86,11 @@ spring:
       filter:
         stat:
           log-slow-sql: true
+  sql:
+    init:
+      mode: embedded
+      platform: h2
+#      classpath 等价于 main/java + main/resources + 第三方jar包的根目录
+      schema-locations: classpath:schema-h2.sql #程序运行时，使用schema.sql来创建数据库中的表
+      data-locations: classpath:data-h2.sql  #程序运行时，使用data.sql来创建初始数据
 

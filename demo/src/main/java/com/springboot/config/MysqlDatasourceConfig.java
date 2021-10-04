@@ -50,6 +50,7 @@ public class MysqlDatasourceConfig {
 
 
     @Bean(name = "mysqlJdbcTemplate")
+    @Primary
     public JdbcTemplate primaryJdbcTemplate(
             @Qualifier("mysqldatasource") DataSource dataSource) {
         return new JdbcTemplate(dataSource);
