@@ -1,7 +1,8 @@
-package com.springboot.service;
+package com.springboot.service.impl;
 
 import com.springboot.mybatis.mysqldao.StudentMapper;
 import com.springboot.model.Student;
+import com.springboot.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
