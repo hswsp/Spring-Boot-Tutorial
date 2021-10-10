@@ -32,7 +32,7 @@ public class ApplicationTest {
         System.out.println("学号" + student1.getSno() + "的学生姓名为：" + student1.getName());
 
         student1.setName("康康");
-        this.studentService.update(student1);
+        this.studentService.updateWithRtn(student1);
 
         Student student2 = this.studentService.queryStudentBySno("001");
         System.out.println("学号" + student2.getSno() + "的学生姓名为：" + student2.getName());

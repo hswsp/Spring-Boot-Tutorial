@@ -25,6 +25,12 @@ public class StudentServiceBatisImpl implements StudentService {
     }
 
     @Override
+    public Student updateWithRtn(Student student) {
+        this.studentMapper.update(student);
+        return this.studentMapper.queryStudentBySno(student.getSno());
+    }
+
+    @Override
     public int deleteBysno(String sno) {
         return this.studentMapper.deleteBysno(sno);
     }

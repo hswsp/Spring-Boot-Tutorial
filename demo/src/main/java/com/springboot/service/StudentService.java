@@ -12,8 +12,10 @@ import java.util.Map;
 public interface StudentService {
     int add(Student student);
 
-    @CachePut(key = "#p0.sno")
     int update(Student student);
+
+    @CachePut(key = "#p0.sno")
+    Student updateWithRtn(Student student);
 
     @CacheEvict(key = "#p0", allEntries = true)
     int deleteBysno(String sno);

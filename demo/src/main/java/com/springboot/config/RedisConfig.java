@@ -1,5 +1,6 @@
 package com.springboot.config;
 
+import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,6 +16,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializer;
 
 import java.time.Duration;
 
@@ -49,20 +51,20 @@ public class RedisConfig extends CachingConfigurerSupport {
     }
 
     @Bean
-    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
-        StringRedisTemplate template = new StringRedisTemplate(factory);
-        setSerializer(template);// 设置序列化工具
+    public RedisTemplate<String, ?> redisTemplate(RedisConnectionFactory factory) {
+        // 使用fastjson序列化替代jdk序列化
+        RedisSerializer<Object> redisSerializer = getRedisSerializer();
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
+        template.setConnectionFactory(factory);
+        template.setKeySerializer(redisSerializer);
+        template.setValueSerializer(redisSerializer);
+        template.setHashKeySerializer(redisSerializer);
+        template.setHashValueSerializer(redisSerializer);
         template.afterPropertiesSet();
         return template;
     }
 
-    private void setSerializer(StringRedisTemplate template) {
-        @SuppressWarnings({ "rawtypes", "unchecked" })
-        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
-        ObjectMapper om = new ObjectMapper();
-        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-        jackson2JsonRedisSerializer.setObjectMapper(om);
-        template.setValueSerializer(jackson2JsonRedisSerializer);
+    private RedisSerializer<Object> getRedisSerializer() {
+        return new GenericFastJsonRedisSerializer();
     }
 }

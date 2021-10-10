@@ -39,4 +39,9 @@ public class MySqlStudentServiceJdbcImpl implements StudentService {
     public Student queryStudentBySno(String sno) {
         return this.studentDao.queryStudentBySno(sno);
     }
+
+    @Override
+    public Student updateWithRtn(Student student) {
+        return null;
+    }
 }
