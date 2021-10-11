@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 @MapperScan(basePackages = MysqlDatasourceConfig.PACKAGE, sqlSessionFactoryRef = "mysqlSqlSessionFactory")
 public class MysqlDatasourceConfig {
     // mysqldao扫描路径
-    static final String PACKAGE = "com.springboot.mybatis.mysqldao";
+    static final String PACKAGE = "com.springboot.dao.mysql";
     // mybatis mapper扫描路径
     static final String MAPPER_LOCATION = "classpath:mapper/mysql/*.xml";
 

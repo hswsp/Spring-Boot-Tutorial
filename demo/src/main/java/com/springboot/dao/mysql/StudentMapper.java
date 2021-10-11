@@ -1,4 +1,4 @@
-package com.springboot.mybatis.mysqldao;
+package com.springboot.dao.mysql;
 
 import com.springboot.model.Student;
 import org.apache.ibatis.annotations.*;
