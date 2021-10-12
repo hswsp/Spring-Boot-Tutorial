@@ -24,6 +24,9 @@ public class User {
     @Column(name = "STATUS")
     private String status;
 
+    @Column(name = "AGE")
+    private Integer age;
+
     /**
      * @return ID
      */
@@ -92,5 +95,13 @@ public class User {
      */
     public void setStatus(String status) {
         this.status = status == null ? null : status.trim();
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }
