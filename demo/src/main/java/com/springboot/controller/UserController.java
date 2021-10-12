@@ -29,6 +29,8 @@ public class UserController {
         return this.userService.findByName(userName);
     }
 
+    @ApiOperation(value = "新增用户落库", notes = "根据用户实体创建用户")
+    @ApiImplicitParam(name = "user", value = "用户实体", required = true, dataType = "User")
     @PostMapping("save")
     public void saveUser(@RequestBody User user) {
         this.userService.saveUser(user);

@@ -1,7 +1,42 @@
+# 描述项目基础信息
+info:
+  app:
+    name: node16-boot-actuator
+    port: 8080
+    version: 1.0.0
+    author: cicada
+
 server:
   servlet:
     application-display-name: ProjectTemplate-Web
     context-path: /web
+
+management:
+  server:
+    port: 8089 #可以自定义端口
+  security:
+    enabled: false #关掉安全认证
+  endpoints:
+    web:
+      exposure:
+        # 打开所有的监控点
+        include: "*"
+      # 自定义监控路径 monitor
+      # 默认值：http://localhost:8016/actuator/*
+      # 配置后：http://localhost:8016/monitor/*
+      base-path: /monitor
+  endpoint:
+    beans:
+      id: instances
+    health:
+      show-details: always
+    shutdown:
+      # 通过指定接口关闭 SpringBoot
+      enabled: true
+
+
+
+
 
 spring:
   h2:
@@ -36,8 +71,8 @@ spring:
         username: sa
         password:
         driver-class-name: org.h2.Driver
-#        schema: classpath:schema-h2.sql #程序运行时，使用schema.sql来创建数据库中的表
-#        data: classpath:data-h2.sql  #程序运行时，使用data.sql来创建初始数据
+        # schema: classpath:schema-h2.sql #程序运行时，使用schema.sql来创建数据库中的表
+        # data: classpath:data-h2.sql  #程序运行时，使用data.sql来创建初始数据
       # 连接池配置
       initial-size: 5
       min-idle: 5
@@ -48,12 +83,12 @@ spring:
       time-between-eviction-runs-millis: 60000
       # 配置连接在池中的最小生存时间
       min-evictable-idle-time-millis: 300000
+      # 用来检测连接是否有效的sql，要求是一个查询语句，常用select 'x'。如果validationQuery为null，
+      # testOnBorrow、testOnReturn、testWhileIdle都不会起作用。
+      validation-query: select 1
       test-while-idle: true
       test-on-borrow: false
       test-on-return: false
-      # 用来检测连接是否有效的sql，要求是一个查询语句，常用select 'x'。如果validationQuery为null，
-      # testOnBorrow、testOnReturn、testWhileIdle都不会起作用。
-      validation-query: select 1 from dual
       # 是否缓存preparedStatement，也就是PSCache  官方建议MySQL下建议关闭   个人建议如果想用SQL防火墙 建议打开
       # 打开PSCache，并且指定每个连接上PSCache的大小
       pool-prepared-statements: true
@@ -120,5 +155,4 @@ logging:
   level:
     com:
       springboot:
-        mybatis:
-          mysqldao: debug
+        dao: debug
