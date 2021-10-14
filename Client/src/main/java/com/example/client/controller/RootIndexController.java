@@ -1,7 +1,6 @@
-package com.springboot.controller;
+package com.example.client.controller;
 
-import com.springboot.config.BlogProperties;
-import com.springboot.config.ConfigBean;
+import com.example.client.config.BlogProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,14 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class RootIndexController {
     @Autowired
     private BlogProperties blogProperties;
-    @Autowired
-    private ConfigBean configBean;
 
     @RequestMapping("/description")
     public String rootIndex() {
-//        return blogProperties.getName()+"——"+blogProperties.getTitle();
-        return configBean.getName()+"——"+configBean.getTitle();
-//          return "hello spring boot";
-
+        return blogProperties.getName()+"——"+blogProperties.getTitle();
     }
 }

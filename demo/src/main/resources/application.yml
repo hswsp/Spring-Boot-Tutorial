@@ -7,6 +7,7 @@ info:
     author: cicada
 
 server:
+  port: 8080
   servlet:
     application-display-name: ProjectTemplate-Web
     context-path: /web
@@ -35,10 +36,11 @@ management:
       enabled: true
 
 
-
-
-
 spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8000/admin # 服务端监听的端口
   h2:
     console:
       path: /h2-console
@@ -128,6 +130,22 @@ spring:
         stat:
           log-slow-sql: true
 
+  mail:
+    jndi-name: "mail/Session"
+    host: smtp.163.com
+    username: xxxxx@163.com
+    password: xxxxx
+    properties:
+      mail:
+        smtp:
+          connectiontimeout: 500000
+          timeout: 300000
+          writetimeout: 5000
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
   redis:
     # Redis数据库索引（默认为0）
     database: 0
@@ -145,7 +163,7 @@ spring:
       # 连接池中的最小空闲连接
       min-idle: 0
     # 连接超时时间（毫秒）
-    timeout: 0
+    timeout: 1000
 
   cache:
     ehcache:
