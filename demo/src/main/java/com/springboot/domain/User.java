@@ -1,13 +1,17 @@
 package com.springboot.domain;
 
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "T_USER")
-public class User {
+@NoArgsConstructor
+public class User implements Serializable {
+    private static final long serialVersionUID = -5492448400038682330L;
     @Id
     @Column(name = "USER_ID")
     private Long id;
@@ -26,6 +30,11 @@ public class User {
 
     @Column(name = "AGE")
     private Integer age;
+
+    public User(String username, String passwd) {
+        this.username = username;
+        this.passwd = passwd;
+    }
 
     /**
      * @return ID
