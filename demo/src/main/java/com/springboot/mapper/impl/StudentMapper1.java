@@ -1,4 +1,4 @@
-package com.springboot.mapper;
+package com.springboot.mapper.impl;
 
 import com.springboot.model.Student;
 import org.springframework.jdbc.core.RowMapper;

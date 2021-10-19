@@ -1,6 +1,6 @@
 package com.springboot.service.impl;
 
-import com.springboot.mapper.SeqenceMapper;
+import com.springboot.mapper.impl.SeqenceMapper;
 import com.springboot.service.IService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;

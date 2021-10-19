@@ -33,7 +33,7 @@ spring:
   mail:
     host: smtp.163.com
     username: xxxxx@163.com
-    password: xxxxxx
+    password: your POP password
     properties:
       mail:
         smtp:
@@ -46,5 +46,5 @@ spring:
     admin:
       notify:
         mail:
-          from: xxxxxx@163.com
-          to: ccccccc@ustc.edu
+          from: xxxxx@163.com
+          to: xxxxxxx@xxxxx

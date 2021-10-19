@@ -133,8 +133,8 @@ spring:
   mail:
     jndi-name: "mail/Session"
     host: smtp.163.com
-    username: xxxxx@163.com
-    password: xxxxx
+    username: xxxxxx@163.com
+    password: your POP password
     properties:
       mail:
         smtp:

@@ -1,7 +1,7 @@
 package com.springboot.dao.impl;
 
 import com.springboot.dao.StudentDao;
-import com.springboot.mapper.StudentMapper1;
+import com.springboot.mapper.impl.StudentMapper1;
 import com.springboot.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
