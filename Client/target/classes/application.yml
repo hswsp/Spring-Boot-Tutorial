@@ -3,7 +3,7 @@ info:
     name: "client"
     description: "Demo client project for Spring Boot admin"
     version: "0.0.1-SNAPSHOT"
-    spring-boot-version: "@project.parent.version@"
+    spring-boot-version: "2.5.4"
 
 server:
   servlet:
