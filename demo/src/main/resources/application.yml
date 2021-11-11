@@ -75,6 +75,13 @@ spring:
         driver-class-name: org.h2.Driver
         # schema: classpath:schema-h2.sql #程序运行时，使用schema.sql来创建数据库中的表
         # data: classpath:data-h2.sql  #程序运行时，使用data.sql来创建初始数据
+      # 数据源2 oracle
+      oracle:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: oracle.jdbc.driver.OracleDriver
+        url: jdbc:oracle:thin:@localhost:1521/xe
+        username: scott
+        password: tiger
       # 连接池配置
       initial-size: 5
       min-idle: 5

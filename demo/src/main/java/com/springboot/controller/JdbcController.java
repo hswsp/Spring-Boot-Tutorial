@@ -14,9 +14,13 @@ import java.util.Map;
 @RestController
 public class JdbcController {
     @Autowired
-//    @Qualifier("studentServiceJDBC")
-    @Qualifier("h2StudentServiceJDBC")
+    @Qualifier("studentServiceJDBC")
+//    @Qualifier("h2StudentServiceJDBC")
     private StudentService studentService;
+
+    @Autowired
+    @Qualifier("oracleStudentServiceImpl")
+    private StudentService oracleStudentService;
 
     @RequestMapping(value = "/querystudent", method = RequestMethod.GET)
     public Student queryStudentBySno(String sno) {
@@ -42,4 +46,8 @@ public class JdbcController {
         return this.studentService.deleteBysno(sno);
     }
 
+    @RequestMapping("querystudentsfromoracle")
+    public List<Map<String, Object>> queryStudentsFromOracle(){
+        return this.oracleStudentService.queryStudentListMap();
+    }
 }
