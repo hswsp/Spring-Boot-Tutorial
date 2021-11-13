@@ -24,7 +24,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("{userName}")
+    @GetMapping("{userName:\\D+}") //非数字
     public User getUserByName(@PathVariable(value = "userName") String userName) {
         return this.userService.findByName(userName);
     }
@@ -44,7 +44,7 @@ public class UserController {
 
     @ApiOperation(value = "获取用户信息", notes = "根据用户id获取用户信息")
     @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "Long", paramType = "path")
-    @GetMapping("/{id}")
+    @GetMapping("/{id:\\d+}") //数字
     public @ResponseBody User getUserById(@PathVariable(value = "id") Long id) {
         User user = new User();
         user.setId(id);

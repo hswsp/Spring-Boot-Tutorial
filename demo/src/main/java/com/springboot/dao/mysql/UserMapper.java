@@ -1,7 +1,7 @@
-package com.springboot.mapper.impl;
+package com.springboot.dao.mysql;
 
 import com.springboot.domain.User;
-import com.springboot.mapper.MyMapper;
+import com.springboot.config.MyMapper;
 
 public interface UserMapper extends MyMapper<User> {
 }

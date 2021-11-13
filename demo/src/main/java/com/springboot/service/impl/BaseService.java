@@ -1,6 +1,6 @@
 package com.springboot.service.impl;
 
-import com.springboot.mapper.impl.SeqenceMapper;
+import com.springboot.dao.SeqenceMapper;
 import com.springboot.service.IService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +12,13 @@ public abstract class BaseService<T> implements IService<T> {
 
     @Autowired
     protected Mapper<T> mapper;
-    @Autowired
+
     protected SeqenceMapper seqenceMapper;
 
     public Mapper<T> getMapper() {
         return mapper;
     }
+
     @Override
     public Long getSequence(@Param("seqName") String seqName){
         return seqenceMapper.getSequence(seqName);

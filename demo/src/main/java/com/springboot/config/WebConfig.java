@@ -2,16 +2,23 @@ package com.springboot.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.filters.XssFilter;
+import com.springboot.interceptor.TimeInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-public class WebConfig {
+public class WebConfig implements WebMvcConfigurer {
+    @Autowired
+    private TimeInterceptor timeInterceptor;
+
     @Bean
     public ObjectMapper getObjectMapper() {
         ObjectMapper mapper = new ObjectMapper();
@@ -31,5 +38,10 @@ public class WebConfig {
         initParameters.put("isIncludeRichText", "true");
         filterRegistrationBean.setInitParameters(initParameters);
         return filterRegistrationBean;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(timeInterceptor);
     }
 }

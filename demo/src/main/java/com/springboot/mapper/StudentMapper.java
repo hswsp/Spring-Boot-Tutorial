@@ -1,4 +1,4 @@
-package com.springboot.mapper.impl;
+package com.springboot.mapper;
 
 import com.springboot.model.Student;
 import org.springframework.jdbc.core.RowMapper;
@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class StudentMapper1 implements RowMapper<Student> {
+public class StudentMapper implements RowMapper<Student> {
     @Override
     public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
         Student student = new Student();

@@ -10,7 +10,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @SpringBootApplication
 @EnableConfigurationProperties({ConfigBean.class})
 @EnableCaching
-@MapperScan("com.springboot.mapper.impl")
+@MapperScan("com.springboot.mapper.batismapper")
 public class DemoApplication {
 
 	public static void main(String[] args) {

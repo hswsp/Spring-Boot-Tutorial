@@ -1,7 +1,7 @@
 package com.springboot.dao.impl;
 
 import com.springboot.dao.StudentDao;
-import com.springboot.mapper.impl.StudentMapper1;
+import com.springboot.mapper.StudentMapper;
 import com.springboot.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -60,7 +60,7 @@ public class MySqlStudentDaoImpl implements StudentDao {
         String sql = "select * from student where sno = ?";
         Object[] args = { sno };
         int[] argTypes = { Types.VARCHAR };
-        List<Student> studentList = this.jdbcTemplate.query(sql, args, argTypes, new StudentMapper1());
+        List<Student> studentList = this.jdbcTemplate.query(sql, args, argTypes, new StudentMapper());
         if (studentList != null && studentList.size() > 0) {
             return studentList.get(0);
         } else {

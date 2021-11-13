@@ -54,6 +54,7 @@ spring:
       #      classpath 等价于 main/java + main/resources + 第三方jar包的根目录
       schema-locations: classpath:schema-h2.sql #程序运行时，使用schema.sql来创建数据库中的表
       data-locations: classpath:data-h2.sql  #程序运行时，使用data.sql来创建初始数据
+
   datasource:
     druid:
       # 数据库访问配置, 使用druid数据源
@@ -181,3 +182,25 @@ logging:
     com:
       springboot:
         dao: debug
+
+#MyBatis
+mybatis:
+  # type-aliases扫描路径
+  type-aliases-package: com.springboot.domain
+  # mapper xml实现扫描路径
+  mapper-locations: classpath:mapper/oracle/*.xml
+  property:
+    order: BEFORE
+
+#mappers 多个接口时逗号隔开
+mapper:
+  mappers: com.springboot.config.MyMapper
+  not-empty: false
+  identity: oracle
+
+#pagehelper
+pagehelper:
+  helperDialect: oracle
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
